@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from paddleocr import PaddleOCR
+from paddleocr import PaddleOCR, paddleocr
 import cv2
-from paddleocr import paddleocr
 import msvcrt
 
 paddleocr.logging.disable()
@@ -16,11 +15,11 @@ while True:
             break
         else:
             f, frame = cap.read()  # 此刻拍照
-            cv2.imwrite("example.png", frame)  # 将拍摄内容保存为png图片
+            cv2.imwrite("imgs/example.png", frame)  # 将拍摄内容保存为png图片
 
             # 识别图片
             ocr = PaddleOCR(use_angle_cls=True, lang="ch")
-            img_path = "example.png"
+            img_path = "imgs/example.png"
 
             img = cv2.imread(img_path)
             cardSerial = img[450:464, 335:398]
@@ -29,7 +28,7 @@ while True:
             # cv2.imwrite("imgs/cardSerialArea.png", cardSerial)
 
             cardSerialResult = ocr.ocr(img, cls=True)
-
+            # print(cardSerialResult)
             for idx in range(len(cardSerialResult)):
                 res = cardSerialResult[idx]
                 for line in res:
