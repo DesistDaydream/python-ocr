@@ -15,20 +15,16 @@ while True:
             break
         else:
             f, frame = cap.read()  # 此刻拍照
-            cv2.imwrite("imgs/example.png", frame)  # 将拍摄内容保存为png图片
-
-            # 识别图片
             ocr = PaddleOCR(use_angle_cls=True, lang="ch")
-            img_path = "imgs/example.png"
 
-            img = cv2.imread(img_path)
-            cardSerial = img[450:464, 335:398]
+            if key == b"s":
+                file = "imgs/example.png"
+                cv2.imwrite(file, frame)
+                img = cv2.imread(file)
+                # cardSerial = img[450:464, 335:398]
 
-            # cv2.imwrite("imgs/cardTypeArea.png", cardType)
-            # cv2.imwrite("imgs/cardSerialArea.png", cardSerial)
-
-            cardSerialResult = ocr.ocr(img, cls=True)
-            # print(cardSerialResult)
+            cardSerialResult = ocr.ocr(frame, cls=True)
+            print(cardSerialResult)
             for idx in range(len(cardSerialResult)):
                 res = cardSerialResult[idx]
                 for line in res:
