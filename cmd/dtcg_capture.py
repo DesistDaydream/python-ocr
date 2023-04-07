@@ -7,6 +7,7 @@ import msvcrt
 paddleocr.logging.disable()
 
 cap = cv2.VideoCapture(0)
+ocr = PaddleOCR(use_angle_cls=True, lang="ch")
 
 while True:
     if msvcrt.kbhit():  # 检测是否有按键输入
@@ -14,8 +15,9 @@ while True:
         if key == b"q":  # 如果输入 'q'，退出程序
             break
         else:
-            f, frame = cap.read()  # 此刻拍照
-            ocr = PaddleOCR(use_angle_cls=True, lang="ch")
+            retval, frame = cap.read()  # 此刻拍照
+            if not retval:
+                print("无法接收到帧，请重试")
 
             if key == b"s":
                 file = "imgs/example.png"
@@ -24,11 +26,10 @@ while True:
                 # cardSerial = img[450:464, 335:398]
 
             cardSerialResult = ocr.ocr(frame, cls=True)
-            print(cardSerialResult)
             for idx in range(len(cardSerialResult)):
                 res = cardSerialResult[idx]
                 for line in res:
-                    # print(line)
+                    print(line)
                     # q: 如果 if line[1][0] 中包含 EX 字符串，就打印出来
                     if "EX" in line[1][0]:
                         print(line[1][0])
