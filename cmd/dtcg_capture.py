@@ -10,10 +10,8 @@ class CardQuantity:
 
 
 if __name__ == "__main__":
-    paddleocr.logging.disable()
-
     cap = cv2.VideoCapture(0)
-    ocr = PaddleOCR(use_angle_cls=True, lang="ch")
+    ocr = PaddleOCR(use_angle_cls=True, lang="ch", show_log=False)
     card_quantities = {}
 
     while True:
