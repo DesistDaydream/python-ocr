@@ -34,11 +34,11 @@ if __name__ == "__main__":
 
                 ocrResults = ocr.ocr(frame, cls=True)
                 for idx in range(len(ocrResults)):
-                    ocrResultLines = ocrResults[idx]
-                    for line in ocrResultLines:
-                        if "EX" in line[1][0]:
-                            cardSerial: str = line[1][0]
-                            cardSerial = cardSerial[:7]
+                    ocrResult = ocrResults[idx]
+                    for textBox in ocrResult:
+                        text = textBox[1][0]
+                        if "EX" in text:
+                            cardSerial: str = text[:7]
                             print("已识别卡牌:", cardSerial)
                             if cardSerial in card_quantities:  # 如果已经有过记录，则将数量加1
                                 card_quantities[cardSerial].quantity += 1
