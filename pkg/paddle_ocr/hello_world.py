@@ -8,7 +8,7 @@ ocr = PaddleOCR(
 img_path = "./imgs/example.png"
 ocrResult = ocr.ocr(img_path, cls=True)
 # ocrResult 是一个 list 类型
-# 其中每个元素是一个 list
+# ocrResult 中的每个元素也是一个 list
 # list 中的每个元素是一个 tuple
 # tuple 中
 # - 第一个元素是一个 list，表示识别到的文本框的四个顶点坐标
@@ -30,4 +30,4 @@ txts = [line[1][0] for line in ocrResult]
 scores = [line[1][1] for line in ocrResult]
 im_show = draw_ocr(image, boxes, txts, scores, font_path="doc/fonts/simfang.ttf")
 im_show = Image.fromarray(im_show)
-im_show.save("result.jpg")
+im_show.save("imgs/result.jpg")
