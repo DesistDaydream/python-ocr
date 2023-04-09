@@ -1,12 +1,13 @@
+from dataclasses import dataclass
 from paddleocr import PaddleOCR, paddleocr
 import cv2
 import msvcrt
 
 
+@dataclass
 class CardQuantity:
-    def __init__(self, serial, quantity):
-        self.serial = serial
-        self.quantity = quantity
+    serial: str
+    quantity: int
 
 
 if __name__ == "__main__":
