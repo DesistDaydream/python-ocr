@@ -51,7 +51,7 @@ def ocrCard(ocrResult):
     for textBox in ocrResult:
         # 识别到的文本信息是文本块的第二个元素中的第一个元素
         text = textBox[1][0]
-        if "ST" in text or "BT" in text or "EX" in text:
+        if text.startswith(("EX", "BT", "ST")):
             cardSerial: str = text[:7]
             print("已识别卡牌:", cardSerial)
 
