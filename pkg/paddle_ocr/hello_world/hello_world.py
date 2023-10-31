@@ -1,7 +1,6 @@
 from paddleocr import PaddleOCR, draw_ocr
 
-# img_path = "./imgs/example.png"
-img_path = "D:\\Projects\\dtcg\\images\\cn\\EXC-01\\EX1-068.png"
+img_path = "./imgs/example.png"
 
 # 实例化 PaddleOCR
 # 目前支持的多语言语种识别，可以通过修改 lang 参数进行切换。例如`ch`, `en`, `fr`, `german`, `korean`, `japan`
@@ -31,13 +30,13 @@ for indexResult, result in enumerate(ocrResults):
         print("这是识别到的第 {} 块信息: ".format(index + 1))
 
         # 每个文本块只包含两个元素
-        # 第一个元素是 list 类型，表示文本框的四个顶点坐标
+        # 第一个元素是 list 类型，表示文本框的四个顶点坐标。list 中的元素从 0 开始依次为 左上角、右上角、右下角、左下角。每个坐标中包含两个信息，横轴坐标和纵轴坐标
         # 第二个元素是 tuple 类型，表示文本框内的文本和置信度
         print("文本框的四个顶点坐标: ", textBox[0])
         print("文本框中的文本和置信度: ", textBox[1])
 
 
-# 显示结果
+# 显示结果，生成一张新的图片，分成左右两种图，左图包含了检测到的文本块，右图为识别到的文字信息，详见 imgs/result.jpg
 # 如果本地没有simfang.ttf，可以在doc/fonts目录下下载
 from PIL import Image
 
