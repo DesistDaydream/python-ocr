@@ -1,6 +1,7 @@
 from paddleocr import PaddleOCR, draw_ocr
 
-img_path = "./imgs/example.png"
+# img_path = "./imgs/example.png"
+img_path = "D:\\Projects\\dtcg\\images\\cn\\EXC-01\\EX1-068.png"
 
 # 实例化 PaddleOCR
 # 目前支持的多语言语种识别，可以通过修改 lang 参数进行切换。例如`ch`, `en`, `fr`, `german`, `korean`, `japan`
